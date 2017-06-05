@@ -37,8 +37,8 @@
 \centerline{\Large\bf ỨNG DỤNG NHẬN DIỆN VÀ ĐẾM SỐ CÂY CỌ}
 \centerline{\large\bf SỬ DỤNG PHƯƠNG PHÁP HAAR-BASED CASCADE CLASSIFIER}
 \vspace*{1cm}
-\centerline{\LARGE\bf ĐỒ ÁN 3}
-\centerline{\Large\bf Chuyên ngành: Toán Tin}
+\centerline{\Large\bf ĐỒ ÁN 3}
+\centerline{\large\bf Chuyên ngành: Toán Tin}
 \vspace*{2cm}
 
 \hspace{1.95cm} \textbf{Giáo viên hướng dẫn } 
@@ -113,9 +113,9 @@ Cuối cùng em xin chúc các thầy cô giáo trong Trường Đại Học Bá
 
 \newpage
 \section{Lời nói đầu}
-Cây cọ dầu là loại cây công nghiệp có vai trò quan trọng trong kinh tế của đất nước nhiệt đới Malaysia, đất nước đứng thứ hai thế giới về sản lượng dầu cọ, với sản lượng năm 2014 đạt 19.5 tỉ tấn. Nguồn lợi kinh tế đem lại cho đất nước này từ ngành công nghiệp dầu cọ ước tính 16.1 tỉ USD vào năm 2015, chiếm 5-6\% GDP của cả đất nước này. 
-Diện tích và sản lượng trồng cọ được kiểm soát bởi cả các hộ trồng cọ nhỏ lẻ (chiếm khoảng 40\%) và các công ty dầu cọ lớn (chiếm khoảng 60\%) (nguồn \href{http://cleanmalaysia.com/2015/12/09/just-how-big-is-malaysias-palm-oil-industry/}{cleanmalaysia} \cite{cleanmalay}).
-Việc giám sát được quá trình phát triển, phát hiện ra những vùng trồng cọ mới và ước tính được sản lượng trồng cọ của mỗi vùng là một yếu tố quan trọng trong dự báo và kiểm soát giá của dầu cọ trên thị trường.
+Cây cọ dầu là loại cây công nghiệp có vai trò quan trọng trong kinh tế của Malaysia, đất nước đứng thứ hai thế giới về sản lượng dầu cọ, với sản lượng năm 2014 đạt 19.5 tỉ tấn. Nguồn lợi kinh tế đem lại cho đất nước này từ ngành công nghiệp dầu cọ ước tính 16.1 tỉ USD vào năm 2015, chiếm 5-6\% GDP của cả đất nước.
+ 
+Diện tích và sản lượng trồng cọ được kiểm soát bởi các hộ trồng cọ nhỏ lẻ (chiếm khoảng 40\%) và các công ty dầu cọ lớn (chiếm khoảng 60\%) (nguồn \href{http://cleanmalaysia.com/2015/12/09/just-how-big-is-malaysias-palm-oil-industry/}{cleanmalaysia} \cite{cleanmalay}).
 
 \begin{figure}[!h]
 	\centering
@@ -123,24 +123,32 @@ Việc giám sát được quá trình phát triển, phát hiện ra những v�
 	\caption[Tình hình thị trường dầu cọ trong 5 năm trở lại đây]{Tình hình thị trường dầu cọ trong 5 năm trở lại đây (nguồn \href{http://www.indexmundi.com/commodities/?commodity=palm-oil&months=60}{indexmundi}\cite{indexmundi})}
 \end{figure}
 
-Số cây cọ trong một vùng trồng cọ là một thông tin cơ bản để theo dõi được sự phát triển của cây cọ cũng như tính toán được sản lượng, bước đầu của nông nghiệp thông minh (intelligent agriculture).
+Việc quản lý và kiểm soát được ngành trồng cây cọ dầu ở Malaysia mang một ý nghĩa quan trọng, giúp dự báo được giá dầu cọ trên thị trường, tránh tình trạng cung vượt quá cầu khiến giá dầu cọ trên thị trường giảm mạnh như trong những năm gần đây. Giám sát được quá trình phát triển, và ước tính được sản lượng trồng cọ của mỗi vùng là những bước đầu tiên trong quản lý trồng 
 
-Cùng với sự phát triển của khoa học viễn thám, ngành khoa học về thu thập thông tin về những đối tượng địa lý, từ trên cao, thường là vệ tinh hoặc máy bay. Dữ liệu ảnh độ phân giải cao về mặt đất đang càng ngày càng phổ biến.
 
-Trong báo cáo này, tôi sẽ trình bày phương pháp sử dụng ảnh viễn thám của vùng Jalan Bukit Kuantan, Malaysia, giúp tự động nhận diện và đếm số lượng cây cọ có trong ảnh của một vùng trồng cọ dầu.
+Số cây cọ trong một vùng trồng cọ chính là một thông tin cơ bản giúp phát hiện ra những vùng trồng cọ mới, theo dõi được sự phát triển của cây cọ và ước tính được sản lượng dầu cọ, chính là bước đầu trong quản lý nông nghiệp trồng cọ.
 
-Phương pháp được sử dụng là phương pháp nhận diện đối tượng Haar-based Cascades Classifier, được đề xuất bởi P. Viola và M. Jones[1] năm 2001.
+Với sự phát triển của công nghệ viễn thám (remote sensing), dữ liệu ảnh vệ tinh độ phân giải cao về mặt đất đang càng ngày càng phổ biến. Thực tế đã có nhiều bài báo nghiên cứu giải quyết bài toán đếm số cây cọ trong ảnh vệ tinh hoặc ảnh máy bay không người lái; nhiều phương pháp khác nhau được sử dụng như phương pháp học sâu sử dụng mạng neuron convolution \cite{deeptree}, phương pháp Extreme learning machine trên nguồn ảnh chụp từ máy bay không người lái \cite{efficientUAV}.
 
-Tôi đã sử dụng phương pháp này để luyện một máy học trên tập dữ liệu ảnh cây cọ dầu thu được từ nguồn ảnh viễn thám ban đầu, từ đó tạo ra chương trình máy học có khả năng nhận diện và đếm số cây cọ với độ chính xác tương đối tốt. Thư viên xử lý ảnh mã nguồn mở OpenCV \href{http://opencv.org}{OpenCV} \cite{opencv} được tôi sử dụng để đào tạo máy học và nhận diện cây trong ảnh.
+Trong báo cáo này, tôi sẽ trình bày phương pháp sử dụng ảnh viễn thám của vùng Jalan Bukit Kuantan, Malaysia, xây dựng chương trình tự động nhận diện và đếm số lượng cây cọ có trong ảnh chụp một vùng trồng cọ. Phương pháp được tôi sử dụng là phương pháp nhận diện đối tượng Haar-based Cascades Classifier, đề xuất bởi P. Viola và M. Jones[1] năm 2001.
+
+Tôi đã sử dụng phương pháp này trên tập dữ liệu ảnh cây cọ dầu trích ra được từ ảnh viễn thám, để đào tạo một máy học phân lớp có khả năng nhận diện và đếm số cây cọ với độ chính xác tương đối tốt. Tôi đã sử dụng một số chương trình trong thư viên mã nguồn mở \href{http://opencv.org}{OpenCV} \cite{opencv} để đào tạo máy học này.
+
 \newpage
 \section{Giới thiệu và đặt vấn đề}
-\subsection{Viễn thám, ảnh vệ tinh chất lượng cao, ảnh UAV}
-Viễn thám \index{Viễn thám} là ngành khoa học về quan sát và thu thập thông tin về những đối tượng và hiện tượng diễn ra mà không liên hệ trực tiếp với đối tượng đó, do đó trái ngược với quan sát thực địa.
+\subsection{Viễn thám, ảnh vệ tinh độ phân giải cao, ảnh UAV}
+Theo \href{https://en.wikipedia.org/wiki/Remote_sensing}{Wikipedia})\cite{remotesens}, viễn thám \index{Viễn thám} là ngành khoa học về quan sát và thu thập thông tin của những đối tượng và hiện tượng diễn ra mà không cần liên hệ trực tiếp với đối tượng đó, do đó trái ngược với quan sát thực địa.
 
-Viễn thám được sử dụng trong rất nhiều lĩnh vực khác nhau, gồm có địa lý, những ngành trong khoa học trái đất (ví dụ như sinh thái học, thủy văn học, hải dương học, địa chất học,v.v.), và cả trong quân sự, kinh tế, và nhiều ngành khác nữa.
-Gần đây, khái niệm viễn thám thường được sử dụng để nhắc đến việc sử dụng các vệ tinh hoặc máy bay cùng với các công nghệ cảm biến hiện đại nằm nhận diện và phân loại các vật thể trên trái đất, sử dụng các loại tín hiệu điện từ.
+Viễn thám được sử dụng trong rất nhiều lĩnh vực khác nhau, gồm có địa lý, những ngành trong khoa học trái đất (sinh thái học, thủy văn học, hải dương học, địa chất học,v.v...), trong quân sự, kinh tế, và nông nghiệp, và nhiều ngành khác nữa.
 
-Viễn thám có thể chia ra hai loại chính là viễn thám chủ động (tín hiệu được phát ra từ vệ tinh hoặc máy bay và bị phản xạ ngược trở lại hoặc bị hấp thu bởi các đối tượng, thu lại được bằng các cảm biến) và viễn thám bị động (thu nhận sự phản chiếu ánh sáng mặt trời từ các vật thể vào các cảm biến) (nguồn \href{https://en.wikipedia.org/wiki/Remote_sensing}{Wikipedia})\cite{remotesens}.
+Gần đây, khái niệm viễn thám thường được sử dụng để nhắc đến việc sử dụng các vệ tinh hoặc máy bay cùng với các công nghệ cảm biến hiện đại nhằm nhận diện và phân loại các vật thể trên trái đất.
+
+Viễn thám có thể chia ra hai loại chính là viễn thám chủ động (tín hiệu được phát ra từ vệ tinh hoặc máy bay và bị phản xạ ngược trở lại hoặc bị hấp thu bởi các đối tượng, kết quả thu lại được bằng các cảm biến) và viễn thám bị động (thu nhận sự phản chiếu ánh sáng mặt trời bởi các vật thể vào các cảm biến).
+
+Từ những cảm biến này, qua quá trình số hóa và các thuật toán xử lý, các nhà khoa học viễn thám thu được thông tin dưới dạng ảnh viễn thám \index{ảnh viễn thám}. Ảnh viễn thám có nhiều đặc tính kĩ thuật rất khác so với các ảnh chụp bởi máy ảnh quang thông thường, khi dải bước sóng mà các cảm biến thu được thường rộng hơn rất nhiều s với khoảng mắt người có thể nhìn thấy được, từ ảnh hồng ngoại cho đến ảnh RADAR. Chính điều này là ưu điểm của ảnh viễn thám, khi thu thập được nhiều thông tin hơn về các đối tượng trên trái đất. 
+
+Một số loại/nguồn ảnh viễn thám được sử dụng phổ biến: Lansat, NOAA-AVHRR, MODIS,...
+
 Chất lượng của ảnh vệ tinh được quyết định bởi các độ phân giải sau:
 \begin{itemize}
 	\item Độ phân giải không gian, kích thước của một pixel được ghi lại trong ảnh vệ tinh ứng với bao nhiêu mét trên thực địa.
@@ -148,13 +156,12 @@ Chất lượng của ảnh vệ tinh được quyết định bởi các độ 
 	\item Độ phân giải giá trị thu được, khi số hóa các giá trị thu được bằng cảm biến, thường nằm trong phạm vi từ 8 cho tới 16 bit trong ảnh viễn thám.
 	\item Độ phân giải thời gian là tần suất bay qua và thu được thông tin về một khu vực nhất định của vệ tinh hoặc máy bay và được sử dụng trong phân tích chuối thời gian.
 \end{itemize}
-Trong những năm gần đây, công nghệ cảm biến và khoa học hàng không vũ trụ đã phát triên mạnh mẽ, trở thành một ngành công nghiệp chứ không còn là độc quyền của chính phủ các nước. Kết quả của sự phát triển này là thu được ảnh vệ tinh chất lượng cao  \index{ảnh vệ tinh chất lượng cao} (very high resolution - VHR) với độ phân giải không gian nhỏ hơn 1m, đã được thu thập phủ khắp bề mặt trái đất, nổi bật là những vệ tinh mới như \href{http://www.satimagingcorp.com/gallery/geoeye-1/}{GeoEye-1} \cite{geoeye} và các vệ tinh WorldView-1,WorldView-2,WorldView-3 và WorldView-4 của \href{https://www.digitalglobe.com/}{DigitalGlobe} \cite{digiglob}.
 
-Những ảnh vệ tinh chất lượng cao đã đóng góp lớn trong công nghệ viễn thám hiện đại, khi mang đến ảnh chất lượng tốt hơn, các độ phân giải cao hơn, đa dạng thông tin hơn về trái đất, giúp người sử dụng ảnh đưa ra quyết định chính xác, cũng như góp phần xây dựng bản đồ thế giới đầy đủ hơn.
+Trong những năm gần đây, công nghệ cảm biến và khoa học hàng không vũ trụ đã phát triển mạnh mẽ, trở thành một ngành công nghiệp, khi có những công ty tự tay tạo ra những tên lửa cỡ nhỏ như Rocket Labs hay vệ tinh cỡ nhỏ như Dove của Planet Labs. Công nghệ viễn thám không còn là độc quyền của chính phủ các nước. Cùng với điều này, ảnh vệ tinh độ phân giải cao  \index{ảnh vệ tinh độ phân giải cao} (very high resolution - VHR), với độ phân giải không gian nhỏ hơn 1m, đã trở nên phổ biến, được thu thập phủ khắp bề mặt trái đất, trong đó nổi bật là những vệ tinh mới và những loại ảnh mới như \href{http://www.satimagingcorp.com/gallery/geoeye-1/}{GeoEye-1} \cite{geoeye} và các vệ tinh WorldView-1,WorldView-2,WorldView-3 và WorldView-4 của \href{https://www.digitalglobe.com/}{DigitalGlobe} \cite{digiglob}.
 
-Bên cạnh ảnh vệ tinh chất lượng cao, ảnh của thiết bị bay không người lái \index{ảnh của thiết bị bay không người lái} (unmanned aerial vehicle - UAV) cũng đang được sử dụng bởi cộng đồng viễn thám như một hệ thống thu thập dữ liệu thông tin địa lý mới không kém phần hiệu quả.
+Những ảnh vệ tinh độ phân giải cao đã đóng góp lớn trong công nghệ viễn thám hiện đại, khi mang đến ảnh chất lượng tốt hơn, các độ phân giải cao hơn, đa dạng thông tin hơn về trái đất, giúp người sử dụng ảnh đưa ra quyết định chính xác, cũng như góp phần xây dựng bản đồ thế giới đầy đủ hơn.
 
-Trong một thời gian dài trước đây, ảnh UAV chỉ được sử dụng cho mục đích quân sự, nhưng với sự tiến bộ của công nghệ và giá thành giảm, những thiết bị bay không người lái trở thành một giải pháp thực tiễn cho nhiều ứng dụng khác nhau như giám sát nông nghiệp, phát hiện thay đổi bất thường, nông nghiệp chính xác hay đếm xe ôtô.
+Bên cạnh ảnh vệ tinh độ phân giải cao, ảnh của thiết bị bay không người lái \index{ảnh của thiết bị bay không người lái} (unmanned aerial vehicle - UAV) cũng đang được sử dụng bởi cộng đồng viễn thám như một hệ thống thu thập dữ liệu thông tin địa lý mới không kém phần hiệu quả.
 
 Tính linh động cao của những thiết bị UAV cho phép sự can thiệp ngay lập tức và đo lường có tương tác theo những yêu cầu cụ thể của khách hàng.
 
@@ -165,22 +172,48 @@ Trong thực tế, UAV có khả năng:
 	\item Cho phép thu thập thông tin theo chiều thời gian của cùng một vùng tại những khoảng thời gian xác định.
 \end{enumerate}
 
-Tuy nhiên, ảnh UAV cũng gặp phải những khó khăn khi những phương pháp xử lý ảnh từng được áp dụng cho ảnh vệ tinh trước đây không còn phù hợp nữa, vì những ảnh UAV có độ phân giải không gian nhỏ hơn nhiều.
+Trong một thời gian dài trước đây, ảnh UAV chỉ được sử dụng cho mục đích quân sự, nhưng với sự tiến bộ của công nghệ và giá thành giảm, những thiết bị bay không người lái trở thành một giải pháp thực tiễn cho nhiều ứng dụng khác nhau như giám sát nông nghiệp, phát hiện thay đổi bất thường, nông nghiệp chính xác hay đếm xe ôtô.
 
-%Trong báo cáo này, tôi sẽ trình bày phương pháp để nhận diện và đếm số cây cọ dầu trong ảnh viễn thám của vùng trồng cọ Kuantan, Malaysia.
 \subsection{Máy học cơ bản và ứng dụng trong thị giác máy tính}
 Theo \href{https://vi.wikipedia.org/wiki/H\%E1\%BB\%8Dc_m\%C3\%A1y}{Wikipedia}, \textbf{Máy học} \index{Máy học} (machine learning) là một lĩnh vực của trí tuệ nhân tạo (artificial intelligence) liên quan đến việc nghiên cứu và xây dựng các kĩ thuật cho phép các hệ thống "học" tự động từ dữ liệu để giải quyết những vấn đề cụ thể.
 
-Máy học đã được ứng dụng không chỉ vào đời sống mà còn vào rất nhiều những lĩnh vực khoa học khác, một trong số đó chính là thị giác máy tính.
+Mỗi năm có hàng trăm thuật toán máy học mới ra đời, nhưng mọi thuật toán máy học đều có ba thành phần sau:
+\begin{itemize}
+	\item \textbf{Mô hình biểu diễn tri thức}. Ví dụ có thể kể đến như cây quyết định, tập các luật, mạng neuron, support vector machines,v.v...
+	\item \textbf{Phương pháp kiểm định chương trình}, nhằm kiểm tra xem liệu thuật toán có hoạt động tốt, đo lường hiệu quả của thuật toán. 
+	\item \textbf{Phương pháp tối ưu}, là phương pháp mà máy học tiếp cận đến mục tiêu của nó, ví dụ như phương pháp hướng giảm trong mô hình máy học dựa trên mạng neuron.
+\end{itemize}
 
+Về cơ bản, máy học có 4 loại sau:
+\begin{itemize}
+	\item Học có giám sát: Dữ liệu được sử dụng để đào tạo máy học bao gồm có cả đầu ra mong muốn.
+	\item Học không giám sát: Dữ liệu được sử dụng để đào tạo không bao gồm đầu ra mong muốn, ví dụ như phân cụm dữ liệu.
+	\item Học nửa giám sát: Dữ liệu được sử dụng để đào tạo có một phần là đi kèm đầu ra mong muốn, một phần không.
+	\item học tăng cường: máy học sẽ nhận được phần thưởng hoặc phạt sau một loạt các hành động tác động lên môi trường. 
+\end{itemize}
+Cụ thể hơn, một số bài toán được nghiên cứu nhiều nhất trong lĩnh vực máy học bao gồm:
+\begin{itemize}
+	\item Bài toán phân lớp, gán nhãn cho những giá trị đầu vào.
+	\item Bài toán phân cụm, phân chia dữ liệu đầu vào thành các cụm hay các miền dựa trên thuộc tính của chúng.
+	\item Bài toán hồi quy, tìm ra hàm biểu diễn quan hệ giữa dữ liệu đầu vào và dữ liệu đầu ra.
+\end{itemize}
+
+Một trong những lĩnh vực thường xuyên được áp dụng các kĩ thuật máy học nhiều nhất chính là thị giác máy tính (computer vision).
 Thị giác máy tính \index{Thị giác máy tính} là một lĩnh vực liên ngành, quan tâm đến việc giúp máy tính đạt được khả năng hiểu được ảnh và video kĩ thuật số, từ đó trích xuất những thông tin hữu ích. Từ quan điểm kĩ thuật, thị giác máy tính tìm kiếm sự tự động hóa những tác vụ mà hệ thống thị giác của mắt người có thể làm được.
 
 Một số tác vụ thông thường của hệ thống thị giác máy tính: nhân diện, phân tích chuyển động, khôi phục ảnh và tái tạo khung cảnh.
 
-Nhận diện đối tượng là một hướng lớn và được tập trung rất nhiều trong thị giác máy tính, đồng thời những kĩ thuật máy học được tạo ra để phục vụ cho tác vụ này cũng rất phong phú. Trong nhận diện đối tượng thì nhiệm vụ cơ bản là xác định được vị trí của một loại đối tượng cần tìm ở trong ảnh. Nếu có nhiều đối tượng thuộc loại đó xuất hiện thì cũng phải tìm được vị trí của tất cả các đối tượng này.
+Nhận diện đối tượng là một hướng chính và được tập trung rất nhiều trong thị giác máy tính, đồng thời những kĩ thuật máy học được tạo ra để phục vụ cho tác vụ này cũng rất phong phú. Trong nhận diện đối tượng thì nhiệm vụ cơ bản là xác định được vị trí của một loại đối tượng cần tìm ở trong ảnh. Nếu có nhiều đối tượng thuộc loại đó xuất hiện thì phải tìm được vị trí của tất cả các đối tượng này.
 
-Bài toán đếm số cây cọ có thể đưa về bài toán nhận diện cây cọ trong ảnh và sử dụng phương pháp máy học để nhận diện là có cây cọ trong ảnh hay không, kêt hợp với phương pháp tìm kiếm đối tượng trong ảnh thường được sử dụng, là phương pháp cửa sổ trượt \index{phương pháp cửa sổ trượt} (slicing window) để nhận diện tất cả số cây cọ có trong ảnh. 
-Trong phương pháp cửa sổ trượt, mỗi cửa sổ là một khung hình kích thước cho trước, nhỏ hơn kích thước của ảnh, trượt đi theo chiều dọc và chiều ngang của anh đến khắp các vị trí trong ảnh. Những ảnh con thu được bằng việc cắt ảnh gốc sử dụng cửa sổ này khi trượt qua mỗi vị trí sẽ được đưa vào máy học nhận diện đối tượng. Máy học nhận diện đối tượng lúc này là một phân lớp nhị phân, trong đó đầu ra của máy học chỉ là có hay không có cây cọ ở trong ảnh. Khi một cửa số đã duyệt hết bức ảnh, ta có thể thay đổi kích thước cửa sổ và thực hiện duyệt lại lần nữa để tìm kiếm những đối tượng có kích thước nhỏ hơn hoặc lớn hơn.
+Bài toán đếm số cây cọ trong ảnh viễn thám chính là một dạng cụ thể của bài toán nhận diện đối tượng, ở đây là nhận diện và đếm số cây cọ xuất hiện. 
+
+Trong báo cáo này, tôi sẽ đưa về bài toán nhận diện và đếm số cây cọ trong ảnh thành bài toán xây dựng \textbf{máy học phân lớp nhị phân} (binary classification) (chỉ phân làm hai lớp có và không hay dương và âm), có khả năng xác định một ảnh có phải là ảnh chụp cây cọ hay không, hay còn gọi là khả năng nhận diện cây cọ trong ảnh.
+
+Sử dụng máy học phân lớp nhị phân này, kết hợp với phương pháp duyệt từng cửa số trong ảnh, slicing window, ta có một phương pháp tìm kiếm và đếm số cây cọ trong ảnh.
+
+Trong phương pháp cửa sổ trượt (slicing window), mỗi cửa sổ là một khung hình chữ nhật với kích thước cho trước, nhỏ hơn kích thước của ảnh,sẽ được cho trượt đi theo chiều dọc và chiều ngang, mỗi lần một số lượng pixel cho trước, cho đến khi duyệt qua khắp các vị trí trong ảnh. 
+
+Những ảnh con thu được bằng việc cắt ảnh gốc sử dụng cửa sổ này sẽ được đưa vào máy học phân lớp nhị phân. Máy học nhận diện đối tượng lúc này sẽ kiểm tra xem liệu có cây cọ ở trong ảnh con này hay không. Nếu có thì số lượng cây cọ đếm được sẽ tăng lên một đơn vị, ngược lại thì dịch chuyển cửa sổ sang vị trí tiếp theo. Khi một cửa số đã duyệt hết bức ảnh, ta có thể thay đổi kích thước cửa sổ và thực hiện duyệt lại lần nữa để tìm kiếm những đối tượng có kích thước nhỏ hơn hoặc lớn hơn.
 
 \begin{figure}
 	\centering
@@ -189,18 +222,18 @@ Trong phương pháp cửa sổ trượt, mỗi cửa sổ là một khung hình
 \end{figure}
 
 
-\subsection{Ứng dụng xử lý ảnh viễn thám vào nhận diện cây cọ dầu}
+\subsection{Ứng dụng xử lý ảnh viễn thám vào nhận diện và đém số cây cọ dầu}
 Cọ dầu là cây công nghiệp phát triển trong vùng khí hậu nóng ẩm. Dầu cọ được chiết xuất từ thịt của quả cây cọ dầu trở thành nguyên liệu thô cho rất nhiều sản phẩm mà đứng đầu là dầu ăn vì sản lượng của dầu cọ rất lớn so với các loại cây cho dầu khác như hướng dương, đậu nành hay cải dầu. 
 
 Dầu cọ có nhu cầu rất lớn trên thị trường khiến cho sự phát triển của diện tích trồng cọ đã tăng trưởng nhanh chóng trong vài thập kỉ gần đây.
 
-Trong báo cáo này, tôi sẽ trình bày phương pháp đếm số cây cọ trong ảnh viễn thám từ dữ liệu ảnh vệ tinh chất lượng cao chụp một vùng trồng cọ ở thành phố Kuantan, Malaysia. 
+Trong báo cáo này, tôi sẽ trình bày phương pháp đếm số cây cọ trong ảnh viễn thám độ phân giải cao, chụp một vùng trồng cọ ở thành phố Kuantan, Malaysia. 
 
-Ảnh vệ tinh chất lượng cao sau khi được tiền xử lý, sẽ được dùng để lấy mẫu những ảnh con chứa cây cọ dầu và những ảnh con không chứa cây cọ dầu. Những ảnh mẫu được tạo ra từ quá trình tiền xử lý và lấy mẫu sẽ được dùng để luyện máy học giúp tự động nhận diện và đếm số cây cọ dầu có ở trong ảnh.
+Ảnh vệ tinh độ phân giải cao sau khi được tiền xử lý, sẽ được dùng để lấy mẫu những ảnh con chứa cây cọ dầu và những ảnh con không chứa cây cọ dầu. Những ảnh mẫu được tạo ra từ quá trình tiền xử lý và lấy mẫu sẽ được dùng để luyện máy học giúp tự động nhận diện và đếm số cây cọ dầu có ở trong ảnh.
 
 Với phương pháp nhận diện đối tượng Haar-based Cascade Classifier được đề xuất bởi P. Viola và M. Jones [1], máy học thu được bằng cách áp dụng phương pháp này trong có khả năng đếm nhanh chóng số lượng cây cọ dầu trong ảnh.
 
-Cuối cùng, tôi sẽ trình bày một ứng dụng desktop, sử dụng thư viện OpenCV và ngôn ngữ lập trình Python, thực thi phương pháp nhận diện đối tượng Haar Cascade, để đếm số cây cọ có trong một bức ảnh viễn thám khác của vùng khác thuộc Kuantan, Malaysia.
+Cuối cùng, tôi viết một ứng dụng desktop, sử dụng thư viện OpenCV\cite{opencv} và ngôn ngữ lập trình Python \cite{python}, thực thi phương pháp nhận diện đối tượng Haar-based Cascade Classifier, để đếm số cây cọ có trong một bức ảnh viễn thám khác của vùng khác thuộc Kuantan, Malaysia.
 
 \newpage
 \section{Phương pháp thực hiện}
@@ -208,9 +241,9 @@ Sau đây, tôi sẽ trình bày phương pháp học máy được sử dụng 
 \subsection{Phương pháp nhận diện đối tượng Haar Cascade}
 \subsubsection{Đặc trưng dạng Haar và ảnh nguyên (Integral Image)}
 Thủ tục nhận diện đối tượng ở trong một bức ảnh phụ thuộc vào giá trị thu được của những đặc trưng thu được từ ảnh đó. Có rất nhiều lý do cho việc sử dụng đặc trưng thay vì từng pixel ảnh. Lý do chung nhất là những đặc trưng này có khả năng mã hóa những tri thức học được từ tập dữ liệu luyên. Lý do thứ hai là hệ thống phân lớp dựa trên đặc trưng thì nhanh hơn dựa trên từng pixel.
-Những đặc trưng dạng Haar là những đặc trưng của ảnh kỹ thuật số, có cái tên bắt nguồn từ sự tương tự với Haar wavelet[?], và là một trong những đặc trưng được sử dụng phổ biến trong nhận dạng đối tượng.
+Những đặc trưng dạng Haar là những đặc trưng của ảnh kỹ thuật số, có cái tên bắt nguồn từ sự tương tự với Haar wavelet, và là một trong những đặc trưng được sử dụng phổ biến trong nhận dạng đối tượng.
 
-Papageorgiou et al.[?] đã đề cập đến việc sử dụng những đặc trưng dựa trên Haar wavelets thay vì sử dụng cường độ sáng tại mỗi điểm ảnh. Viola và Jones đã sử dụng ý tưởng này và phát triển những đặc trưng dạng Haar (Haar-like features).
+Papageorgiou et al. \cite{Papageorgiou} đã đề cập đến việc sử dụng những đặc trưng dựa trên Haar wavelets thay vì sử dụng cường độ sáng tại mỗi điểm ảnh. Viola và Jones đã sử dụng ý tưởng này và phát triển những đặc trưng dạng Haar (Haar-like features).
 Một đặc trưng dạng Haar tính toán trên những vùng hình chữ nhật kề nhau tại một vị trí xác định trên cửa số nhận diện, tính tổng cường độ sáng (giá trị tại mỗi pixel trong ảnh grayscale) trong mỗi vùng và tính hiệu của những tổng này.
 Ví dụ, ta có một cơ sở dữ liệu hình ảnh về mặt người. Dễ dàng quan sát thấy trong tất cả các ảnh rằng vùng mắt thường tối hơn so với vùng má. Do đó một đặc trưng dạng Haar cho mặt người có thể là hai hình chữ nhật kề nhau nằm trên vùng mắt và vùng má. Vị trí của hai hình chữ nhật này được định nghĩa tương đối với cửa sổ nhận diện.
 
@@ -300,9 +333,9 @@ Phần này sẽ mô tả một thuật toán xây dựng một máy học phân
 
 Trước hết ta nhắc đến một số khái niệm trong phân lớp nhị phân được sử dụng ở phần này.
 
-Giả sử gọi hàm phân lớp nhị phân là hàm $f(x)$ và ngưỡng của phân lớp là $t$. khi $f(x) > t$, dữ liệu đầu vào $x$ được phân vào lớp dương, ngược lại $x$ được phân vào lớp âm.
-
 Trong phân lớp nhị phân (binary classification), khi phân lớp một tập dữ liệu, hàm phân lớp được sử dụng cùng với một ngưỡng (threshold) được xác định để phân lớp. Hai lớp trong phân lớp nhị phân tường được gọi là lớp âm (negative) và lớp dương (positive). Trong nhận diện đối tượng, lớp dương thường là tập những đối tượng cần nhận diện, còn lớp âm thường là tập những đối tượng không phải đối tượng cần nhận diện.
+
+Giả sử gọi hàm phân lớp nhị phân là hàm $f(x)$ và ngưỡng của phân lớp là $t$. khi $f(x) > t$, dữ liệu đầu vào $x$ được phân vào lớp dương, ngược lại $x$ được phân vào lớp âm.
 
 Tùy vào cách lựa chọn ngưỡng $t$ mà ta thu được kết quả phân lớp với các đo lường về độ chính xác khác nhau. Một số khái niệm được định nghĩa dựa trên phân lớp nhị phân:
 \begin{itemize}
@@ -313,7 +346,7 @@ Tùy vào cách lựa chọn ngưỡng $t$ mà ta thu được kết quả phân
 \end{itemize}
 Các tỉ lệ True Positive, True Negative, False Postive và False Negative được tính như sau:
 
-tỉ lệ true positive (true positive rate):
+Tỉ lệ true positive (true positive rate):
 \begin{equation}
 	 TPR = \frac{TP}{TP + FN}
 \end{equation}
@@ -343,20 +376,19 @@ FPR = \frac{FP}{FP + TN}
 
 Ngưỡng của một máy học phân lớp có thể điều chỉnh để đạt được tỉ lệ false negative gần tới 0, để đảm bảo không có cửa sổ nào có đối tượng bị bỏ sót, hoặc ngược lại, loại bỏ đi đa phần nhưng cửa sổ âm.
 
-Dạng tổng quát của quá trình nhận dạng là một dạng đơn giản của cây quyết định, mà ta gọi là cascade. Những kết quả dương từ máy học phân lớp đầu tiên sẽ được đưa vào máy học phân lớp thứ hai và tiếp tục phân lớp. Kết quả dương của máy học phân lớp thứ hai sẽ được đưa vào máy học thứ ba, cứ thế tiếp diễn. Những cửa sổ bị các máy học phân lớp nhận diện là âm sẽ ngay lập tức bị loại bỏ khỏi lần phân lớp tiếp theo.
+Dạng tổng quát của quá trình nhận dạng là một dạng đơn giản của cây quyết định, mà ta gọi là cascade, gồm có các giai đoạn (stage). Mỗi một giai đoạn ứng với một máy học phân lớp nhận diện cây cọ, được tạo ra bằng thuật toán dạng AdaBoost trình bày trong bảng 1. Những kết quả dương từ máy học phân lớp đầu tiên sẽ được đưa vào máy học phân lớp thứ hai và tiếp tục phân lớp. Kết quả dương của máy học phân lớp thứ hai sẽ được đưa vào máy học thứ ba, cứ thế tiếp diễn. Những cửa sổ bị các máy học phân lớp nhận diện là âm sẽ ngay lập tức bị loại bỏ khỏi lần phân lớp tiếp theo.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.5]{figures/cascadeDetection.png} 
 	\caption[Mô tả của một máy học nhận diện dạng cascade]{Mô tả của một máy học nhận diện dạng cascade. Một chuối những máy học phân lớp được áp dụng cho những cửa sổ. Máy học phân lớp đầu tiên sẽ loại bỏ một số lượng lớn những ví dụ âm với xử lý rất đơn giản (chỉ có một vài đặc trưng được sử dụng). Những máy học phân lớp tiếp theo sẽ loại bỏ những cửa sổ âm khác nhưng phức tạp hơn (nhiều đặc trưng hơn). Sau một vào bước xử lý, số cửa sổ phải xử lý giảm đi đáng kể. Phần cuối là xử lý về sau, có thể sử dụng một hệ thống nhận diện khác hoặc tiếp tục thêm các máy học phân lớp vào.}
 \end{figure}
-Cấu trúc của máy học nhận dạng cascade phản ánh thực tế rằng trong một bức ảnh, đa phần cửa số là âm, vì thế nó cố gắng loại bỏ những cửa sổ âm này ở những giai đoạn sớm nhất có thể, những cửa sổ dương sẽ được phân lớp dương lần lượt qua các mọi máy học phân lớp của cascade, sự kiện này hiếm khi xảy ra.
+Cấu trúc của máy học nhận dạng cascade phản ánh thực tế rằng trong một bức ảnh, đa phần cửa sổ là âm (không phải là đối tượng cần nhận diện), vì thế nó cố gắng loại bỏ những cửa sổ âm này ở những giai đoạn sớm nhất có thể, những cửa sổ dương sẽ được phân lớp dương lần lượt qua các mọi máy học phân lớp của cascade.
 
-Luyện một máy học phân lớp dạng cascade liên quan đến sự đánh đổi. Trong hầu hết các trường hợp, nhiều đặc trưng được sử dụng hơn sẽ giúp đạt được tỉ lệ nhận diện cao hơn và tỉ lệ false positive thấp hơn. Đồng thời máy học phân lớp có nhiều đặc trưng sẽ tốn nhiều thời gian để tính toán hơn. Khi luyện một máy học phân lớp dạng cascade, ta quan tâm đến: 1. số máy học phân lớp, 2. số đặc trưng trong mỗi máy học, 3. ngưỡng của mỗi máy học, được điều chỉnh để tối thiểu hóa số đặc trưng cần tính toán nhưng vẫn đảm bảo độ chính xác yêu cầu.
+Trong hầu hết các trường hợp, nhiều đặc trưng được sử dụng hơn sẽ giúp đạt được tỉ lệ nhận diện cao hơn và tỉ lệ false positive thấp hơn. Nhưng đồng thời máy học phân lớp có nhiều đặc trưng sẽ tốn nhiều thời gian để tính toán hơn. Khi luyện một máy học phân lớp dạng cascade, ta quan tâm đến: 1. số máy học phân lớp, 2. số đặc trưng trong mỗi máy học, 3. ngưỡng của mỗi máy học, được điều chỉnh để tối thiểu hóa số đặc trưng cần tính toán nhưng vẫn đảm bảo độ chính xác yêu cầu.
 
-Trong thực tế, một framework rất đơn giản được sử dụng để tạo ra một máy học phân lớp có hiệu năng cao. % Đó là tại mỗi giai đoạn, giảm tỉ lệ false positive và giảm tỉ lệ nhân diện.
-
-Mỗi một giai đoạn (stage) của máy học casade được luyện bằng cách thêm vào những đặc trưng vào máy học giai đoạn này cho đến khi tỉ lệ nhận diện vào tỉ lệ false positive đạt được yêu cầu. Các giai đoạn được thêm vào cho tới khi tỉ lệ false positive và tỉ lệ nhận diện tổng thể đạt yêu cầu.
+Trong thực tế, một framework rất đơn giản được sử dụng để tạo ra một máy học phân lớp có hiệu năng cao.
+Mỗi một giai đoạn của máy học casade được luyện bằng cách thêm vào những đặc trưng vào máy học giai đoạn này cho đến khi tỉ lệ nhận diện vào tỉ lệ false positive đạt được yêu cầu. Các giai đoạn được thêm vào cho tới khi tỉ lệ false positive và tỉ lệ nhận diện tổng thể đạt yêu cầu.
 
 \newpage
 \section{Kết quả thực hiện}
@@ -364,12 +396,12 @@ Mỗi một giai đoạn (stage) của máy học casade được luyện bằng
 Dữ liệu được sử dụng trong báo cáo này là hai ảnh được chụp bởi máy bay không người lái (UAV), chụp một vùng trồng cọ thuộc vùng Jalan Bukit Kuantan, Malaysia tại hai địa điểm khác nhau.
 \begin{figure}[!h]
 	\centering
-	\begin{minipage}{0.45\textwidth}
+	\begin{minipage}{0.7\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{figures/data02.png} % first figure itself
 		\caption[ảnh vùng trồng cọ thứ nhất]{ảnh vùng trồng cọ thứ nhất, được sử dụng để làm dữ liệu luyện máy học nhận dạng cây cọ}
 	\end{minipage}\hfill
-	\begin{minipage}{0.45\textwidth}
+	\begin{minipage}{0.7\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{figures/data01.png} % second figure itself
 		\caption[ảnh vùng trồng cọ thứ hai]{ảnh vùng trồng cọ thứ hai, được sử dụng để làm dữ liệu kiểm tra độ chính xác của máy học nhận dạng}
@@ -392,12 +424,12 @@ Sau đây là các bước của quá trình luyện máy học nhận diện c�
 	Lặp lại các bước trên, nhưng lựa chọn các vùng không phải là cây cọ, ta thu được tập dữ liệu ảnh mẫu âm.
 	\begin{figure}[!h]
 		\centering
-		\begin{minipage}{0.5\textwidth}
+		\begin{minipage}{0.7\textwidth}
 			\centering
 			\includegraphics[width=0.9\textwidth]{figures/positiveList.png} % first figure itself
 			\caption[Tập ảnh mẫu dương]{Tập ảnh mẫu dương}
 		\end{minipage}\hfill
-		\begin{minipage}{0.5\textwidth}
+		\begin{minipage}{0.7\textwidth}
 			\centering
 			\includegraphics[width=0.9\textwidth]{figures/negativeList.png} % second figure itself
 			\caption[Tập ảnh mẫu âm]{Tập ảnh mẫu âm}
@@ -413,13 +445,15 @@ Sau đây là các bước của quá trình luyện máy học nhận diện c�
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.3]{figures/datastage_11.png} 
-	\caption[Hiển thị các đặc trưng được lựa chọn của một giai đoạn trong máy học]{Hiển thị các đặc trưng được lựa chọn của một giai đoạn trong máy học.}
+	\caption[Hiển thị các đặc trưng dạng Haar được lựa chọn của một giai đoạn trong máy học]{Hiển thị các đặc trưng dạng Haar được lựa chọn của một giai đoạn (giai đoạn 11) trong máy học đào tạo được.}
 \end{figure}	
 \end{enumerate}
 
 \subsection{Mô tả chương trình}
-Sau khi đã có kết quả của quá trình luyện máy học nhận diện là file xml mô tả máy học và các đặc trưng được lựa chọn, tôi tiếp tục sử dụng thư viện OpenCV, ngôn ngữ lập trình Python và thư viện làm giao diện PySide để xây dựng chương trình desktop cho phép người dùng mở ảnh và chạy thuật toán nhận diện cây cọ với máy học đã được luyện, và lưu kết quả nhận diện dưới dạng file shapefile để dễ dàng sử dụng trong các chương trình hệ thống thông tin địa lý khác như ArcMap hay QGIS.
+Sau khi đã có kết quả của quá trình luyện máy học nhận diện là file xml mô tả máy học và các đặc trưng được lựa chọn, tôi tiếp tục sử dụng thư viện OpenCV, ngôn ngữ lập trình Python và thư viện làm giao diện PySide để xây dựng chương trình desktop tự động nhận diện và đếm số cây cọ trong một bức ảnh.
 
+Chương trình cho phép lựa chọn ảnh để đếm cây với nút \textbf{Choose Image}, Sau khi nhấn nút \textbf{Run}, chương trình sẽ tự động xử lý và hiển thị kết quả ở khung hình bên phải. Các cây được nhận diện sẽ được khoanh bằng các hình vuông màu trắng.
+Nút \textbf{Export} cho phép xuất kết quả nhận diện ra dưới định dạng file shapefile.
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.45]{figures/appScreenshot01.png}
@@ -428,7 +462,7 @@ Sau khi đã có kết quả của quá trình luyện máy học nhận diện 
 \subsection{Kết quả và ước lượng độ chính xác}
 Độ chính xác của quá trình nhận dạng được đánh giá định lượng thông qua 3 chỉ số: precision, recall và overall accuracy, được tính dựa trên kết quả nhận diện được khi so sánh với kết quả cây thực sự có trong ảnh.
 
-Công thức của các chỉ số này tham khảo từ [?] như sau:
+Công thức của các chỉ số này tham khảo từ \cite{deeptree} như sau:
 \begin{equation}
 	\text{Precision} = \frac{\text{Số đối tượng nhận diện được đúng là cây cọ}}{\text{Tổng số đối tượng nhận diện}}
 \end{equation}
@@ -442,6 +476,14 @@ Công thức của các chỉ số này tham khảo từ [?] như sau:
 Một nhận diện được cho là nhận diện đúng cây cọ khi tâm của nhận diện đó cách tâm của một cây cọ thực sự không quá 10 pixel.
 
 Bảng 2 cung cấp kết quả về các chỉ số đánh giá độ chính xác định lượng của chương trình với các dữ liệu mẫu được sử dụng để kiểm tra.
+Ta nhận thấy tỉ lệ chính xác này là tương đối tốt.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.6]{figures/testRegion.png}
+	\caption[Ảnh các vùng dữ liệu được sử dụng để kiểm định độ chính xác của chương trình]{Ảnh các vùng dữ liệu được sử dụng để kiểm định độ chính xác của chương trình.}
+\end{figure}
+
 
 \begin{table}[!h]
 	\caption[độ chính xác của các phương pháp trên các dữ liệu kiểm thử]{độ chính xác của các phương pháp trên các dữ liệu kiểm thử}
@@ -461,11 +503,9 @@ Bảng 2 cung cấp kết quả về các chỉ số đánh giá độ chính x�
 		\hline
 	\end{tabular}
 \end{table}
-
-Ta nhận thấy tỉ lệ chính xác này là tương đối tốt.
 \newpage
 \section{Kết luận}
-Trong báo cáo này, tôi đã trình bày quá trình sử dụng phương pháp nhận diện đối tượng Haar-based Cascade Classifier đề xuất bởi P. Viola và  M. Jones, vào xây dựng máy học nhận diện và đếm số cây cọ trong ảnh viễn thám chất lượng cao thu thập được từ vùng Jalan Bukit Kuantan, Malaysia. Trong quá trình này tôi có sử dụng đến thư viện OpenCV để luyện máy học nhận diện cây cọ và ngôn ngữ lập trình Python, cùng các thư viện mã nguồn mở hỗ trợ xử lý dữ liệu thông tin địa lý khác. Bằng trực quan có thể thấy kết quả của máy học nhận diện vẫn còn chưa đủ tốt, khi có những vùng nhỏ trong ảnh có cây cọ nhưng lại không hề nhận diện được.
+Trong báo cáo này, tôi đã trình bày quá trình sử dụng phương pháp nhận diện đối tượng Haar-based Cascade Classifier đề xuất bởi P. Viola và  M. Jones, nhằm xây dựng máy học nhận diện và đếm số cây cọ trong ảnh viễn thám độ phân giải cao thu thập được từ vùng Jalan Bukit Kuantan, Malaysia. Trong quá trình này tôi có sử dụng đến thư viện OpenCV để luyện máy học nhận diện cây cọ và ngôn ngữ lập trình Python, cùng các thư viện mã nguồn mở hỗ trợ xử lý dữ liệu thông tin địa lý khác. Bằng trực quan có thể thấy kết quả của máy học nhận diện vẫn còn chưa đủ tốt, khi có những vùng nhỏ trong ảnh có cây cọ nhưng lại không hề nhận diện được.
 
 Trong những nghiên cứu tiếp theo, tôi đề xuất sử dụng một số hướng giúp cải thiện hiệu quả của phương pháp như: tăng kích thước bộ dữ liệu luyện máy học, gồm có tập dữ liệu có cây cọ và tập dữ liệu không có cây cọ; sử dụng ảnh từ những cây chưa nhận diện được, thêm vào tập dữ liệu luyện để luyện lại; sử dụng các phương pháp máy học khác như convolution neural network.
 Do năng lực và thời gian có hạn, báo cáo còn nhiều sai sót mong nhận được góp ý thêm, tôi xin chân thành cảm ơn.
@@ -475,28 +515,54 @@ Do năng lực và thời gian có hạn, báo cáo còn nhiều sai sót mong n
 %%%%%
 \newpage
 \begin{thebibliography}{9}
+	\bibitem{Papageorgiou}
+	C. Papageorgiou, M. Oren, T. Poggio, 
+	"A general framework for object detection",
+	International Conference on Computer Vision, 1998.
+	%
+	\bibitem{deeptree}
+	Weijia Li, Haohuan Fu, Le Yu, Arthur Cracknell,
+	"Deep Learning Based Oil Palm Tree Detection and Counting for High-Resolution Remote",
+	Remote Sensing, 2017, Vol. 9, ISSN: 2072-4292
+	Sensing Images
+	%
+	\bibitem{efficientUAV}
+	Salim Malek, Yakoub Bazi, Naif Alajlan, Haikel AlHichri, Farid Melgani,
+	"Efficient Framework for Palm Tree Detection in UAV Images",
+	IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 7, no. 12, pp. 4692-4703, Dec. 2014.
+	%
 	\bibitem{ViolaJones}
 	P. Viola and M. Jones,
 	\textit{Rapid object detection using a boosted cascade of simple features},
 	in IEEE Comp. Soc. Conf. on Computer Vision and Pattern Recognition. CVPR 2001, vol. 1. IEEE, 2001, pp. 1-511.
+	%
 	\bibitem{indexmundi}
 	Palm oil Price, http://www.indexmundi.com/commodities/?commodity=palm-oil
+	%
 	\bibitem{opencv}
 	OpenCV library, http://opencv.org
+	%
 	\bibitem{cleanmalay}
 	Just how Big is Malaysia’s Palm Oil Industry?, http://cleanmalaysia.com/2015/12/09/just-how-big-is-malaysias-palm-oil-industry/
+	%
 	\bibitem{remotesens}
 	Remote Sensing, https://en.wikipedia.org/wiki/Remote\_sensing
+	%
 	\bibitem{geoeye}
 	GeoEye-1 Satellite Image, http://www.satimagingcorp.com/gallery/geoeye-1/
+	%
 	\bibitem{digiglob}
 	Digital Globe, https://www.digitalglobe.com/
+	%
 	\bibitem{qgis}
 	QGIS - A Free and Open Source Geographic Information System, http://www.qgis.org/en/site/
+	%
 	\bibitem{shapefile}
 	Shapefiles, http://doc.arcgis.com/en/arcgis-online/reference/shapefiles.htm
+	%
 	\bibitem{python}
 	Python language, https://www.python.org/
+	%
 	\bibitem{gdal}
 	GDAL - Geospatial Data Abstraction Library, http://gdal.org/
 \end{thebibliography}
